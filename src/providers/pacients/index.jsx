@@ -18,8 +18,10 @@ export const PacientProvider = ({ children }) => {
         else {
             console.warn('Este CPF já foi cadastrado');
         }
-    }
 
+
+        console.log(pacient)
+    }
 
     return (
         <PacietContext.Provider

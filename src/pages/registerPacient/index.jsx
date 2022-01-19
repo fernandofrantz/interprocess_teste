@@ -40,9 +40,6 @@ export const RegisterPacient = () => {
     registerPatientLocal(data)
   };
 
-  //console.log(localStorage.getItem('1234567890'))
-
-
   return (
     <>
       <div>
