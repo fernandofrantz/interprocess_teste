@@ -3,9 +3,6 @@ import { StyledCardDiv } from "./styles"
 export const PatientCard = ({ person }) => {
     return (
         <>
-
-
-
         {person &&
         <StyledCardDiv>
             <h3>{person.name}</h3>
