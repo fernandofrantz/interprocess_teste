@@ -20,11 +20,11 @@ export const ConsultPacient = () => {
 
     const handleUnsearch = () => {
         setUserSearchForName('')
+        setSendSearchToNextState('')
         setConditionalSendButton(true)
     }
 
     getLocalStoragedPacients()
-    console.log('pacients', pacient)
 
     return (
         <>
@@ -57,7 +57,8 @@ export const ConsultPacient = () => {
             (<ConsultPacientStyled>
                 <p>Resultados para: {userSearchForName}</p>
                 {pacient && pacient.map((person, index) => {
-                    if(person.name.toLowerCase() === userSearchForName.toLowerCase()) {
+                    if(person.name.toLowerCase() === userSearchForName.toLowerCase() 
+                    || person.name.toLowerCase().split(' ')[0] === userSearchForName.toLowerCase()) {
                         return <PatientCard key={index} person={person}/>
                     }
                 })}
