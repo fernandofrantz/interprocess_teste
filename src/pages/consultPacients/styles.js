@@ -7,6 +7,9 @@ export const ConsultPacientStyled = styled.div`
     align-items: center;
 
 
+    width: 100%;
+
+
 `
 export const SearchField = styled.div`
     display: flex;
@@ -30,4 +33,10 @@ export const StyledMainDiv = styled.div `
     justify-content: center;
     align-items: center;
 
+`
+
+export const ModalEditDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `

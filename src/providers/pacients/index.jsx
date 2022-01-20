@@ -21,22 +21,42 @@ export const PacientProvider = ({ children }) => {
                 
     }
 
-
     const registerPatientLocal = (pacientData) => {
         let haveAccess = false
         if (localStorage.getItem(pacientData.cpf) === null) {
             localStorage.setItem(pacientData.cpf, JSON.stringify(pacientData))
             pacient.push(pacientData)
-            console.log('Paciente cadastrado com sucesso!')
+            alert('Paciente cadastrado com sucesso!')
         }
         else {
-            console.warn('Este CPF já foi cadastrado');
+            alert('Este CPF já foi cadastrado');
         }
     }
 
+    const handleEditPacient = (editPacientData, cpf) => {
+        let pacientToBeEdited = JSON.parse(localStorage.getItem(cpf))
+        
+        let afterEditUser = {
+            address: editPacientData.address,
+            birthday: editPacientData.birthday,
+            cpf: pacientToBeEdited.cpf,
+            createdOn: pacientToBeEdited.createdOn,
+            name: editPacientData.name,
+            sex: editPacientData.sex,
+            status: editPacientData.status
+        }
+
+        localStorage.removeItem(cpf)
+        window.location.reload()
+        registerPatientLocal(afterEditUser)
+        console.log(pacient)
+    }
+
+
+
     return (
         <PacietContext.Provider
-        value={{pacient, registerPatientLocal, getLocalStoragedPacients}}
+        value={{pacient, registerPatientLocal, getLocalStoragedPacients, handleEditPacient}}
         >
             {children}
         </PacietContext.Provider>

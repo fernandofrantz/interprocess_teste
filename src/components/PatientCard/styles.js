@@ -19,8 +19,7 @@ export const StyledCardDiv = styled.div`
     }
 
     div {
-        margin-left: 50px;
-        width: 110%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -28,6 +27,17 @@ export const StyledCardDiv = styled.div`
 
         p {
             margin: 5px;
+        }
+
+        .cardHeader {
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            margin: 0px;
+
+            .edit {
+                font-size: 30px;
+            }
         }
     }
 `

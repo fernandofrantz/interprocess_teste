@@ -1,8 +1,9 @@
 import { Button, Menu, TextField } from "@mui/material"
 import { useState } from "react"
+import { ModalEditPacient } from "../../components/ModalEditPacient"
 import { PatientCard } from "../../components/PatientCard"
 import { usePacient } from "../../providers/pacients"
-import { ConsultPacientStyled, Header, SearchField, StyledMainDiv } from "./styles"
+import { ConsultPacientStyled, Header, ModalEditDiv, SearchField, StyledMainDiv } from "./styles"
 
 export const ConsultPacient = () => {
     
@@ -26,9 +27,20 @@ export const ConsultPacient = () => {
 
     getLocalStoragedPacients()
 
+
+    const [pacientToEdit, setPacientToEdit] = useState()
+    const [isOpenModal, setIsOpenModal] = useState(false)
+    
+    const setPacientAndOpenModal = (pacientEditData) => {
+        setPacientToEdit(pacientEditData)
+        setIsOpenModal(true)
+    }
+
+
     return (
         <>
         <StyledMainDiv>
+            {isOpenModal && <ModalEditPacient pacientToEdit={pacientToEdit} setIsOpenModal={setIsOpenModal}/>}
         <SearchField>
             {conditionalSendButton ?
             (<>
@@ -66,12 +78,11 @@ export const ConsultPacient = () => {
             ) : (
             <ConsultPacientStyled>
                 {pacient && pacient.map((person, index) => (
-                    <PatientCard key={index} person={person}/>
+                    <PatientCard setPacientAndOpenModal={setPacientAndOpenModal} key={index} person={person}/>
                     ))}
             </ConsultPacientStyled>
             )
     }
-
         </StyledMainDiv>
         </>
     )
