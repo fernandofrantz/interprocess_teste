@@ -12,7 +12,6 @@ export const RegisterPacient = () => {
     const [creates, setCreateds] = useState([])
 
 
-
     const formSchema = yup.object().shape({
     name: yup
       .string()
@@ -34,7 +33,8 @@ export const RegisterPacient = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const { patient, registerPatientLocal } = usePacient()
+  const { patient, registerPatientLocal, getLocalStoragedPacients } = usePacient()
+  getLocalStoragedPacients()
 
   const handleForm = (data) => {
     registerPatientLocal(data)

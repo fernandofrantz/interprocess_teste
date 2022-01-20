@@ -6,7 +6,7 @@ import { ConsultPacientStyled, Header, SearchField, StyledMainDiv } from "./styl
 
 export const ConsultPacient = () => {
     
-    const { pacient } = usePacient()
+    const { pacient, getLocalStoragedPacients } = usePacient()
 
 
     const [sendSearchToNextState, setSendSearchToNextState] = useState('')
@@ -23,7 +23,8 @@ export const ConsultPacient = () => {
         setConditionalSendButton(true)
     }
 
-
+    getLocalStoragedPacients()
+    console.log('pacients', pacient)
 
     return (
         <>
@@ -51,7 +52,6 @@ export const ConsultPacient = () => {
             )
             }
         </SearchField>
-
 
         {userSearchForName ?
             (<ConsultPacientStyled>

@@ -9,7 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
 
-    const { pacient } = usePacient()
+    const { pacient, getLocalStoragedPacients } = usePacient()
+
+    getLocalStoragedPacients()
 
     let totalPacients = pacient.length
     let activePacients = 0
