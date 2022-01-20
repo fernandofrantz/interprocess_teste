@@ -110,8 +110,8 @@ export const RegisterPacient = () => {
               helperText={errors.status?.message}
               select
             >
-              <MenuItem defaultChecked value="active">Ativo</MenuItem>
-              <MenuItem value="inactive">Inativo</MenuItem>
+              <MenuItem defaultChecked value="Ativo">Ativo</MenuItem>
+              <MenuItem value="Inativo">Inativo</MenuItem>
             </TextField>
           <TextField
               id="select"
@@ -126,8 +126,8 @@ export const RegisterPacient = () => {
               helperText={errors.sex?.message}
               select
             >
-              <MenuItem defaultChecked value="masc">Masculino</MenuItem>
-              <MenuItem value="fem">Feminino</MenuItem>
+              <MenuItem defaultChecked value="Masculino">Masculino</MenuItem>
+              <MenuItem value="Feminimo">Feminino</MenuItem>
               <MenuItem value="other">Outro</MenuItem>
             </TextField>
           </div>
