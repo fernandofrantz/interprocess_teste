@@ -1,11 +1,10 @@
 import { Button, MenuItem, TextField } from "@mui/material"
+
 import { usePacient } from "../../providers/pacients"
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { date } from "yup";
-import { useNavigate } from "react-router-dom";
 
 export const ModalEditPacient = ({ setIsOpenModal, pacientToEdit }) => {
 
@@ -85,7 +84,7 @@ export const ModalEditPacient = ({ setIsOpenModal, pacientToEdit }) => {
               variant="outlined"
               size="small"
               color="primary"
-              style={{width: '30%'}}
+              style={{width: '110px'}}
               {...register("status")}
               error={!!errors.status}
               helperText={errors.status?.message}
@@ -102,7 +101,7 @@ export const ModalEditPacient = ({ setIsOpenModal, pacientToEdit }) => {
               variant="outlined"
               size="small"
               color="primary"
-              style={{width: '30%'}}
+              style={{width: '110px'}}
               {...register("sex")}
               error={!!errors.sex}
               helperText={errors.sex?.message}

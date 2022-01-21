@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledCardDiv = styled.div`
 
-    width: 90%;
+    width: 250px;
     background-color: #bdd6ee;
     border-radius: 10px;
 
@@ -11,7 +11,8 @@ export const StyledCardDiv = styled.div`
     justify-content: center;
     align-items: center;
 
-    margin: 20px 0px 10px 0px;
+    padding: 10px;
+    margin: 20px 10px 10px 10px;
 
     h3 {
         margin: 10px;

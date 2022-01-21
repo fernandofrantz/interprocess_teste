@@ -2,14 +2,8 @@ import styled from "styled-components";
 
 export const ConsultPacientStyled = styled.div`
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-
-    width: 100%;
-
-
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 `
 export const SearchField = styled.div`
     display: flex;
@@ -32,6 +26,19 @@ export const StyledMainDiv = styled.div `
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+
+    .pacients {
+        display: flex;
+        flex-wrap: wrap;
+        
+        width: 90%;
+
+        .search {
+            width: 100%;
+        }
+
+    }
 
 `
 

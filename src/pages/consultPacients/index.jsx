@@ -1,9 +1,9 @@
-import { Button, Menu, TextField } from "@mui/material"
+import { Button, TextField } from "@mui/material"
 import { useState } from "react"
 import { ModalEditPacient } from "../../components/ModalEditPacient"
 import { PatientCard } from "../../components/PatientCard"
 import { usePacient } from "../../providers/pacients"
-import { ConsultPacientStyled, Header, ModalEditDiv, SearchField, StyledMainDiv } from "./styles"
+import { ConsultPacientStyled, SearchField, StyledMainDiv } from "./styles"
 
 export const ConsultPacient = () => {
     
@@ -27,7 +27,6 @@ export const ConsultPacient = () => {
 
     getLocalStoragedPacients()
 
-
     const [pacientToEdit, setPacientToEdit] = useState()
     const [isOpenModal, setIsOpenModal] = useState(false)
     
@@ -45,7 +44,7 @@ export const ConsultPacient = () => {
             {conditionalSendButton ?
             (<>
                 <TextField 
-                label="Procure pelo paciente"
+                label="Primeiro nome ou nome completo"
                 margin="normal"
                 variant="outlined"
                 placeholder="Ex: Fernando"
@@ -64,17 +63,21 @@ export const ConsultPacient = () => {
             )
             }
         </SearchField>
-
+        <div className="pacients">
         {userSearchForName ?
-            (<ConsultPacientStyled>
-                <p>Resultados para: {userSearchForName}</p>
+            (
+            <>
+            <h3 className="search">Resultados para: {userSearchForName}</h3>
+            <ConsultPacientStyled>
                 {pacient && pacient.map((person, index) => {
                     if(person.name.toLowerCase() === userSearchForName.toLowerCase() 
                     || person.name.toLowerCase().split(' ')[0] === userSearchForName.toLowerCase()) {
                         return <PatientCard key={index} person={person}/>
                     }
+                    return ''
                 })}
             </ConsultPacientStyled>
+            </>
             ) : (
             <ConsultPacientStyled>
                 {pacient && pacient.map((person, index) => (
@@ -82,7 +85,8 @@ export const ConsultPacient = () => {
                     ))}
             </ConsultPacientStyled>
             )
-    }
+        }
+        </div>
         </StyledMainDiv>
         </>
     )

@@ -1,15 +1,13 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useHistory } from "react-router";
-import { TextField, Button, Select, MenuItem, Menu } from "@mui/material";
+import { TextField, Button, MenuItem } from "@mui/material";
 import { date } from "yup";
 import { usePacient } from "../../providers/pacients";
-import { useContext, useState } from "react";
+import { RegisterPage, StyledFormContainer } from "./styles";
 
 export const RegisterPacient = () => {
 
-    const [creates, setCreateds] = useState([])
 
 
     const formSchema = yup.object().shape({
@@ -33,7 +31,7 @@ export const RegisterPacient = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const { patient, registerPatientLocal, getLocalStoragedPacients } = usePacient()
+  const { registerPatientLocal, getLocalStoragedPacients } = usePacient()
   getLocalStoragedPacients()
 
   const handleForm = (data) => {
@@ -42,7 +40,11 @@ export const RegisterPacient = () => {
 
   return (
     <>
-      <div>
+      <RegisterPage>
+        <StyledFormContainer>
+        <h4>
+          Cadastre um paciente abaixo
+        </h4>
         <form className="form_register" onSubmit={handleSubmit(handleForm)}>
           <div>
             <TextField
@@ -55,7 +57,7 @@ export const RegisterPacient = () => {
               {...register("name")}
               error={!!errors.name}
               helperText={errors.name?.message}
-            />
+              />
           </div>
           <div>
             <TextField
@@ -68,7 +70,7 @@ export const RegisterPacient = () => {
               {...register("birthday")}
               error={!!errors.birthday}
               helperText={errors.birthday?.message}
-            />
+              />
           </div>
           <div>
             <TextField
@@ -93,7 +95,7 @@ export const RegisterPacient = () => {
               {...register("address")}
               error={!!errors.address}
               helperText={errors.address?.message}
-            />
+              />
           </div>
 
           <div>
@@ -104,12 +106,12 @@ export const RegisterPacient = () => {
               variant="outlined"
               size="small"
               color="primary"
-              style={{width: '30%'}}
+              style={{width:'110px'}}
               {...register("status")}
               error={!!errors.status}
               helperText={errors.status?.message}
               select
-            >
+              >
               <MenuItem defaultChecked value="Ativo">Ativo</MenuItem>
               <MenuItem value="Inativo">Inativo</MenuItem>
             </TextField>
@@ -120,12 +122,12 @@ export const RegisterPacient = () => {
               variant="outlined"
               size="small"
               color="primary"
-              style={{width: '30%'}}
+              style={{width:'110px'}}
               {...register("sex")}
               error={!!errors.sex}
               helperText={errors.sex?.message}
               select
-            >
+              >
               <MenuItem defaultChecked value="Masculino">Masculino</MenuItem>
               <MenuItem value="Feminimo">Feminino</MenuItem>
               <MenuItem value="other">Outro</MenuItem>
@@ -134,8 +136,9 @@ export const RegisterPacient = () => {
             <Button color="primary" type="submit" variant="contained">
               Submit
             </Button>
-        </form>
-      </div>
+          </form>
+          </StyledFormContainer>
+      </RegisterPage>
     </>
   );
 };

@@ -1,10 +1,9 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext } from "react";
 
 
 const PacietContext = createContext();
 
 export const PacientProvider = ({ children }) => {
-    const [getLocalStorageData, setGetLocalStorageData] = useState([])
 
     let pacient = []
 
@@ -12,21 +11,18 @@ export const PacientProvider = ({ children }) => {
 
         if(pacient.length <= 0) {
             const keys = Object.keys(localStorage);
-            let localStoragedPacients = []
             for (let counter = 0; counter < keys.length; counter++) {
                 let commingPacient = localStorage.getItem(keys[counter])
                 pacient.push(JSON.parse(commingPacient))
             }
         }
-                
     }
 
     const registerPatientLocal = (pacientData) => {
-        let haveAccess = false
         if (localStorage.getItem(pacientData.cpf) === null) {
             localStorage.setItem(pacientData.cpf, JSON.stringify(pacientData))
             pacient.push(pacientData)
-            alert('Paciente cadastrado com sucesso!')
+            alert('Paciente cadastrado/editado com sucesso!')
         }
         else {
             alert('Este CPF já foi cadastrado');
@@ -49,10 +45,7 @@ export const PacientProvider = ({ children }) => {
         localStorage.removeItem(cpf)
         window.location.reload()
         registerPatientLocal(afterEditUser)
-        console.log(pacient)
     }
-
-
 
     return (
         <PacietContext.Provider

@@ -1,12 +1,8 @@
 import { StyledCardDiv } from "./styles"
 import { AiOutlineEdit } from 'react-icons/ai'
-import { usePacient } from "../../providers/pacients"
-import { useState } from "react"
-import { ModalEditPacient } from "../ModalEditPacient"
 
 export const PatientCard = ({ person, setPacientAndOpenModal }) => {
 
-    const { handleEditPacient } = usePacient()
 
     return (
         <>
@@ -16,12 +12,13 @@ export const PatientCard = ({ person, setPacientAndOpenModal }) => {
                 <div >
                     <div className="cardHeader">
                         <h3>{person.name}</h3>
-                        <AiOutlineEdit onClick={() => setPacientAndOpenModal(person)} className="edit"/>
+                        <AiOutlineEdit onClick={() => setPacientAndOpenModal(person)} className="edit"/><p onClick={() => setPacientAndOpenModal(person)}>editar</p>
                     </div>
                     <p>CPF: {person.cpf}</p>
                     <p>Sexo: {person.sex}</p>
                     <p>Status: {person.status}</p>
                     <p>Data de nascimento: {person.birthday}</p>
+                    {person.address !== '' && <p>Endereço: {person.address}</p>}
                 </div>
             </StyledCardDiv>
             ) : (
@@ -29,16 +26,16 @@ export const PatientCard = ({ person, setPacientAndOpenModal }) => {
             <div >
                  <div className="cardHeader">
                         <h3>{person.name}</h3>
-                        <AiOutlineEdit onClick={() => setPacientAndOpenModal(person)} className="edit"/>
+                        <AiOutlineEdit onClick={() => setPacientAndOpenModal(person)} className="edit"/><p onClick={() => setPacientAndOpenModal(person)}>editar</p>
                     </div>
                 <p>CPF: {person.cpf}</p>
                 <p>Sexo: {person.sex}</p>
                 <p>Status: {person.status}</p>
                 <p>Data de nascimento: {person.birthday}</p>
+                {person.address !== '' && <p>Endereço: {person.address}</p>}
             </div>
             </StyledCardDiv>
             )
-
         }
         </>
     )
