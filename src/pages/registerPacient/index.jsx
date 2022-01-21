@@ -8,19 +8,12 @@ import { usePacient } from "../../providers/pacients";
 import { useContext, useState } from "react";
 
 export const RegisterPacient = () => {
+  const [creates, setCreateds] = useState([]);
 
-    const [creates, setCreateds] = useState([])
-
-
-    const formSchema = yup.object().shape({
-    name: yup
-      .string()
-      .required("Nome obrigatório"),
-    birthday: yup
-      .string().required('Data de nascimento obrigatória'),
-    cpf: yup
-      .string()
-      .required("CPF obrigatório"),
+  const formSchema = yup.object().shape({
+    name: yup.string().required("Nome obrigatório"),
+    birthday: yup.string().required("Data de nascimento obrigatória"),
+    cpf: yup.string().required("CPF obrigatório"),
     sex: yup.string().required("Indique o sexo"),
     address: yup.string(),
     status: yup.string().required("Indique um status"),
@@ -33,11 +26,12 @@ export const RegisterPacient = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const { patient, registerPatientLocal, getLocalStoragedPacients } = usePacient()
-  getLocalStoragedPacients()
+  const { patient, registerPatientLocal, getLocalStoragedPacients } =
+    usePacient();
+  getLocalStoragedPacients();
 
   const handleForm = (data) => {
-    registerPatientLocal(data)
+    registerPatientLocal(data);
   };
 
   return (
@@ -104,40 +98,42 @@ export const RegisterPacient = () => {
               variant="outlined"
               size="small"
               color="primary"
-              style={{width: '30%'}}
+              style={{ width: "30%" }}
               {...register("status")}
               error={!!errors.status}
               helperText={errors.status?.message}
               select
             >
-              <MenuItem defaultChecked value="Ativo">Ativo</MenuItem>
+              <MenuItem defaultChecked value="Ativo">
+                Ativo
+              </MenuItem>
               <MenuItem value="Inativo">Inativo</MenuItem>
             </TextField>
-          <TextField
+            <TextField
               id="select"
               label="Sexo"
               margin="normal"
               variant="outlined"
               size="small"
               color="primary"
-              style={{width: '30%'}}
+              style={{ width: "30%" }}
               {...register("sex")}
               error={!!errors.sex}
               helperText={errors.sex?.message}
               select
             >
-              <MenuItem defaultChecked value="Masculino">Masculino</MenuItem>
+              <MenuItem defaultChecked value="Masculino">
+                Masculino
+              </MenuItem>
               <MenuItem value="Feminimo">Feminino</MenuItem>
               <MenuItem value="other">Outro</MenuItem>
             </TextField>
           </div>
-            <Button color="primary" type="submit" variant="contained">
-              Submit
-            </Button>
+          <Button color="primary" type="submit" variant="contained">
+            Submit
+          </Button>
         </form>
       </div>
     </>
   );
 };
-
-
