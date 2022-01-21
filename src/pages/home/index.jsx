@@ -12,6 +12,13 @@ export const Home = () => {
 
     getLocalStoragedPacients()
 
+    const navigate = useNavigate()
+    const sendTo = (path) => {
+        navigate(path)
+    }
+
+    
+    // Pegar quantidade de pessoas cadastradas/ativas/inativas
     let totalPacients = pacient.length
     let activePacients = 0
     for (let counter = 0; counter < pacient.length; counter++) {
@@ -19,16 +26,10 @@ export const Home = () => {
             activePacients++
         }
     }
-
-    const navigate = useNavigate()
-    const sendTo = (path) => {
-        navigate(path)
-    }
-
     const data = [
         { name: 'Ativos', value: activePacients },
         { name: 'Inativos', value: totalPacients-activePacients },
-      ];
+    ];
       
     return (
         <>

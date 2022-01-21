@@ -36,6 +36,7 @@ export const StyledMainDiv = styled.div `
 
         .search {
             width: 100%;
+            
         }
 
     }

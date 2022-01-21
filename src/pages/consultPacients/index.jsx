@@ -9,32 +9,29 @@ export const ConsultPacient = () => {
     
     const { pacient, getLocalStoragedPacients } = usePacient()
 
+    getLocalStoragedPacients()
 
+    // Funções e constantes para trabalhar com a busca pelo nome
     const [sendSearchToNextState, setSendSearchToNextState] = useState('')
     const [userSearchForName, setUserSearchForName] = useState('')
     const [conditionalSendButton, setConditionalSendButton] = useState(true)
-
     const handleSearch = () => {
         setUserSearchForName(sendSearchToNextState)
         setConditionalSendButton(false)
     }
-
     const handleUnsearch = () => {
         setUserSearchForName('')
         setSendSearchToNextState('')
         setConditionalSendButton(true)
     }
 
-    getLocalStoragedPacients()
-
+    // Funções e constantes para editar paciente
     const [pacientToEdit, setPacientToEdit] = useState()
     const [isOpenModal, setIsOpenModal] = useState(false)
-    
     const setPacientAndOpenModal = (pacientEditData) => {
         setPacientToEdit(pacientEditData)
         setIsOpenModal(true)
     }
-
 
     return (
         <>

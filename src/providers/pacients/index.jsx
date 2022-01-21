@@ -5,10 +5,9 @@ const PacietContext = createContext();
 
 export const PacientProvider = ({ children }) => {
 
+    // Pegar pacientes do localStorage
     let pacient = []
-
     const getLocalStoragedPacients = () => {
-
         if(pacient.length <= 0) {
             const keys = Object.keys(localStorage);
             for (let counter = 0; counter < keys.length; counter++) {
@@ -18,6 +17,7 @@ export const PacientProvider = ({ children }) => {
         }
     }
 
+    // Registrar paciente
     const registerPatientLocal = (pacientData) => {
         if (localStorage.getItem(pacientData.cpf) === null) {
             localStorage.setItem(pacientData.cpf, JSON.stringify(pacientData))
@@ -29,6 +29,7 @@ export const PacientProvider = ({ children }) => {
         }
     }
 
+    // Editar paciente
     const handleEditPacient = (editPacientData, cpf) => {
         let pacientToBeEdited = JSON.parse(localStorage.getItem(cpf))
         
